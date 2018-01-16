@@ -1,4 +1,4 @@
-package entity;
+package biblihoteque.entity;
 
 import java.util.List;
 

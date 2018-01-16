@@ -1,4 +1,4 @@
-package main;
+package biblihoteque.main;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import entity.Client;
-import entity.Emprunt;
-import entity.Livre;
+import biblihoteque.entity.Client;
+import biblihoteque.entity.Emprunt;
+import biblihoteque.entity.Livre;
 
 public class TestJpa {
 
@@ -45,13 +45,10 @@ public class TestJpa {
 		//un client et ses emprunts
 		TypedQuery<Client> queryCli = em.createQuery("select c from Client c where c.id=:idC", Client.class);
 		queryCli.setParameter("idC", 1);
-		List<Client> client = queryCli.getResultList();
+		Client client = queryCli.getResultList().get(0);
 
-		for(Client c: client) {
-			for(Emprunt e: c.getEmprunt()) {
+			for(Emprunt e: client.getEmprunt()) {
 				System.out.println(e.getDateDebut());
 			}
-		}
 	}
-
 }
