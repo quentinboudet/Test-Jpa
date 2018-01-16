@@ -3,8 +3,11 @@ package banques.entity;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -12,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity //Indique que la classe doit être gérée par JPA
+@Inheritance(strategy= InheritanceType.JOINED)
+@DiscriminatorColumn(name = "TYPE")
 @Table(name="compte") //@Table (facultatif) désigne la table à mapper 
 public class Compte {
 	@Id 
@@ -22,6 +27,9 @@ public class Compte {
 	
 	@Column(name = "SOLDE")
 	private double solde;
+	
+	@Column(name = "TYPE")
+	private String type;
 	
 	@ManyToMany
 	@JoinTable(
@@ -77,6 +85,14 @@ public class Compte {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 

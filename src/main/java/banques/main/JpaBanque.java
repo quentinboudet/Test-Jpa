@@ -14,6 +14,7 @@ import banques.entity.Adresse;
 import banques.entity.Banque;
 import banques.entity.Client;
 import banques.entity.Compte;
+import banques.entity.LivretA;
 import banques.entity.Operation;
 
 public class JpaBanque {
@@ -46,11 +47,12 @@ public class JpaBanque {
 		c.setDateNaissance(LocalDate.of(1990, 5, 5));
 		c.setBanque(b);
 
-		Compte co = new Compte(); // création d’un compte
+		Compte co = new LivretA(); // création d’un compte
 		co.setId(1);
 		co.setNumero("04562154");
 		List<Client> ClList = new ArrayList<Client>();
 		ClList.add(c);
+		co.setType("LA");
 		co.setClients(ClList);
 
 		Operation ope = new Operation(); // création d’une opération
@@ -68,11 +70,6 @@ public class JpaBanque {
 
 //*/transaction
 		transaction.commit();
-//		
-//		Entreprise e2 = (Entreprise) em.find(AbstractClient.class, 3);
-//		Particulier p2 = (Particulier) em.find(AbstractClient.class, 4);
-//		LOGGER.debug("Client: " + p2);
-//		LOGGER.debug("Client: " + e2);
 		
 		
 //*/EM
